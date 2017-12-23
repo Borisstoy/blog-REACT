@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { createPost } from '../actions';
+import _ from 'lodash';
+
+const FIELDS = {
+  title: {
+    type: 'input',
+    label: 'Title for post'
+  },
+  categories: {
+    type: 'input',
+    label: 'Enter some categories'
+  },
+  content: {
+    type: 'textarea',
+    label: 'Enter some content'
+  },
+};
 
 class PostsNew extends Component {
   renderField(field) {
@@ -69,15 +85,12 @@ class PostsNew extends Component {
 function validate(values) {
   const errors = {};
 
-  if(!values.title) {
-    errors.title = "Enter a title!"
-  }
-  if(!values.categories) {
-    errors.categories = "Enter a category!"
-  }
-  if(!values.content) {
-    errors.content = "Enter some content please!"
-  }
+  _.each(FIELDS, (type, field) => {
+    if (!values[field]) {
+      errors[field] = `Enter a ${field}`
+    }
+  });
+
   return errors;
 }
 
