@@ -5,9 +5,9 @@
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
-    "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch",
+    "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start-dev": "npm run start-dev-hmr",
+    "start-dev-hmr": "node_modules/.bin/webpack-dev-server --progress --inline --hot --open",
     "postinstall": "webpack -p",
     "start": "node server.js",
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
@@ -43,6 +43,7 @@
     "webpack": "^3.10.0",
     "redux-promise": "^0.5.3",
     "express": "^4.14.0",
-    "next": "2.0.0-beta.5"
+    "next": "2.0.0-beta.5",
+    "cross-env": "^3.1.4"
   }
 }
