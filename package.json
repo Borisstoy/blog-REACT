@@ -9,7 +9,9 @@
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "postinstall": "webpack -p",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
+    "heroku-postbuild": "next build"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +40,9 @@
     "react-router-dom": "^4.0.0",
     "redux": "^3.0.4",
     "redux-form": "^6.6.3",
-    "redux-promise": "^0.5.3"
+    "webpack": "^3.10.0",
+    "redux-promise": "^0.5.3",
+    "express": "^4.14.0",
+    "next": "2.0.0-beta.5"
   }
 }
