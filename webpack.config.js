@@ -1,20 +1,26 @@
-var path = require('path');
-var config = {
-  entry: path.resolve(__dirname, '../app/main.js'),
+module.exports = {
+  entry: [
+    './src/index.js'
+  ],
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: __dirname,
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
     loaders: [{
-      test: /\.js$/,
-
-      // There is not need to run the loader through
-      // vendors
-      exclude: [node_modules_dir],
-      loader: 'babel'
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        presets: ['react', 'es2015', 'stage-1']
+      }
     }]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './'
   }
 };
-
-module.exports = config;
